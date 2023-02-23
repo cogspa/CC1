@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blending Images</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #333;
+		}
+
+		.container {
+			position: relative;
+			width: 800px;
+			height: 600px;
+			margin: 50px auto;
+			background-color: #000;
+			transition: background-color 0.5s ease-in-out;
+		}
+
+		.image {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transform: rotateZ(calc(10deg * var(--rotation)));
+		}
+
+		.image1 {
+			mix-blend-mode: multiply;
+			z-index: 1;
+		}
+
+		.image2 {
+			z-index: 2;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<img class="image image1" src="https://source.unsplash.com/random/800x600?1" alt="Image 1">
+		<img class="image image2" src="https://source.unsplash.com/random/800x600?2" alt="Image 2">
+	</div>
+	<script>
+		setInterval(() => {
+			let container = document.querySelector('.container');
+			container.style.backgroundColor = getRandomColor();
+			container.style.setProperty('--rotation', Math.random());
+		}, 900);
+
+		function getRandomColor() {
+			let r = Math.floor(Math.random() * 256);
+			let g = Math.floor(Math.random() * 256);
+			let b = Math.floor(Math.random() * 256);
+			return `rgb(${r}, ${g}, ${b})`;
+		}
+	</script>
+</body>
+</html>
