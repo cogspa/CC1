@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<!-- In this updated code, we define a new --scale variable for each image, 
+    which we use to scale the size of the image up or down by a random amount. 
+    We also update the transform property to use the --rotation variable to rotate each image to a different angle.
+
+We define a new --blend-mode variable for each image, which we use to set the mix-blend-mode 
+property to a random blend mode. In the JavaScript code, we call getRandomBlendMode() 
+to choose a random blend mode for each image every 0.8 seconds. -->
+
+<html>
+<head>
+	<title>Blending Images</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #333;
+		}
+
+		.container {
+			position: relative;
+			width: 800px;
+			height: 600px;
+			margin: 50px auto;
+			background-color: #000;
+			transition: background-color 0.5s ease-in-out;
+		}
+
+		.image {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: calc(60% + var(--scale));
+			height: calc(60% + var(--scale));
+			object-fit: cover;
+			transform: rotateZ(calc(var(--rotation) * 10deg));
+			mix-blend-mode: var(--blend-mode);
+		}
+
+		.image1 {
+			--rotation: 0.5;
+			--scale: 20%;
+			--blend-mode: multiply;
+			z-index: 1;
+		}
+
+		.image2 {
+			--rotation: 0.3;
+			--scale: -20%;
+			--blend-mode: screen;
+			z-index: 2;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<img class="image image1" src="https://source.unsplash.com/random/800x600?1" alt="Image 1">
+		<img class="image image2" src="https://source.unsplash.com/random/800x600?2" alt="Image 2">
+	</div>
+	<script>
+		setInterval(() => {
+			let container = document.querySelector('.container');
+			container.style.backgroundColor = getRandomColor();
+
+			let image1 = document.querySelector('.image1');
+			let image2 = document.querySelector('.image2');
+
+			image1.style.setProperty('--scale', `${getRandomScale()}%`);
+			image2.style.setProperty('--scale', `${getRandomScale()}%`);
+
+			image1.style.setProperty('--blend-mode', getRandomBlendMode());
+			image2.style.setProperty('--blend-mode', getRandomBlendMode());
+		}, 800);
+
+		function getRandomScale() {
+			return Math.floor(Math.random() * 40 - 20);
+		}
+
+		function getRandomBlendMode() {
+			let modes = ['normal', 'multiply', 'screen', 'overlay', 'darken', 'lighten'];
+			return modes[Math.floor(Math.random() * modes.length)];
+		}
+
+		function getRandomColor() {
+			let r = Math.floor(Math.random() * 256);
+			let g = Math.floor(Math.random() * 256);
+			let b = Math.floor(Math.random() * 256);
+			return `rgb(${r}, ${g}, ${b})`;
+		}
+	</script>
+</body>
+</html>
