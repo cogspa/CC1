@@ -34,6 +34,7 @@ to choose a random blend mode for each image every 0.8 seconds. -->
 			width: calc(60% + var(--scale));
 			height: calc(60% + var(--scale));
 			object-fit: cover;
+            /* We also update the transform property to use the --rotation variable to rotate each image to a different angle. */
 			transform: rotateZ(calc(var(--rotation) * 10deg));
 			mix-blend-mode: var(--blend-mode);
 		}
@@ -66,6 +67,9 @@ to choose a random blend mode for each image every 0.8 seconds. -->
 			let image1 = document.querySelector('.image1');
 			let image2 = document.querySelector('.image2');
 
+            // we define a new --scale variable for each image, which we use 
+            // to scale the size of the image up or down by a random amount.
+
 			image1.style.setProperty('--scale', `${getRandomScale()}%`);
 			image2.style.setProperty('--scale', `${getRandomScale()}%`);
 
@@ -76,7 +80,7 @@ to choose a random blend mode for each image every 0.8 seconds. -->
 		function getRandomScale() {
 			return Math.floor(Math.random() * 40 - 20);
 		}
-
+        // In the JavaScript code, we call getRandomBlendMode() to choose a random blend mode for each image every 0.8 seconds.
 		function getRandomBlendMode() {
 			let modes = ['normal', 'multiply', 'screen', 'overlay', 'darken', 'lighten'];
 			return modes[Math.floor(Math.random() * modes.length)];
