@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blending Images</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #333;
+		}
+
+		/* .container {
+			position: relative;
+			width: 800px;
+			height: 600px;
+			margin: 50px auto;
+			background-color: greenyellow;
+		} */
+
+		.image1 {
+			position: fixed;
+            top: 334;
+			left: 460;
+			/* width: 80%;
+			height: 80%; */
+			/* object-fit: cover; */
+		}
+
+        .image2 {
+			position: absolute;
+			top: 134;
+			left: 160;
+			width: 50%;
+			height: 50%;
+			/* object-fit: cover; */
+		}
+
+		.image1 {
+			mix-blend-mode: multiply;
+			z-index: 1;
+            
+			
+		}
+
+		.image2 {
+            mix-blend-mode: multiply;
+			z-index: 2;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div class="container"> -->
+		<img class="image image1" src="https://source.unsplash.com/random/800x600?1" alt="Image 1">
+		<img class="image image2" src="https://source.unsplash.com/random/800x600?2" alt="Image 2">
+	<!-- </div> -->
+</body>
+</html>
